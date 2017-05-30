@@ -1,0 +1,6 @@
+framework module SENTTransportDetectionSDK {
+  umbrella header "SENTTransportDetectionSDK.h"
+
+  export *
+  module * { export * }
+}
