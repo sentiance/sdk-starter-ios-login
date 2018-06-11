@@ -2,17 +2,17 @@
 //  AppDelegate.swift
 //  SDKStarterSwift
 //
-//  Created by Muhammad Iqbal on 30/05/2016.
-//  Copyright © 2016 Sentiance Corporation. All rights reserved.
+//  Created by Gustavo Nascimento on 11/06/2018.
+//  Copyright © 2018 Sentiance Corporation. All rights reserved.
 //
 
 import UIKit
 
-let APP_ID = ""
-let APP_SECRET = ""
+let APPID = ""
+let SECRET = ""
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, SENTTransportDetectionSDKDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -58,8 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SENTTransportDetectionSDK
     }
 
     func launchSentianceSdk(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        let config = SENTConfig.init(appId: APP_ID, secret: APP_SECRET, launchOptions: launchOptions)
-        let sdk: SENTSDK = SENTSDK.sharedInstance() as! SENTSDK
+        let config = SENTConfig.init(appId: APPID, secret: SECRET, launchOptions: launchOptions)
+        let sdk: SENTSDK = SENTSDK.sharedInstance()
         sdk.initWith(config, success: {
             self.didAuthenticationSuccess()
             self.startSentianceSDK()
@@ -69,17 +69,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SENTTransportDetectionSDK
     }
 
     func didAuthenticationSuccess() {
-        let sdk: SENTSDK = SENTSDK.sharedInstance() as! SENTSDK
+        let sdk: SENTSDK = SENTSDK.sharedInstance()
 
-        NSLog("==== Sentiance SDK started, version: \(sdk.getVersion())");
-        NSLog("==== Sentiance platform user id for this install: \(sdk.getUserId())");
+        print("==== Sentiance SDK started, version: \(sdk.getVersion())");
+        print("==== Sentiance platform user id for this install: \(sdk.getUserId())");
 
         sdk.getUserAccessToken({ (token) in
             if let uToken = token {
-                NSLog("==== Authorization token that can be used to query the HTTP API: Bearer \(uToken.tokenId)")
+                print("==== Authorization token that can be used to query the HTTP API: Bearer \(uToken)")
             }
         }) {
-            NSLog("Could not retrieve token")
+            print("==== Something prevented to get the token ====")
         }
 
         let notificationName = Notification.Name("SdkAuthenticationSuccess")
@@ -87,15 +87,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SENTTransportDetectionSDK
     }
 
     func startSentianceSDK() {
-        let sdk: SENTSDK = SENTSDK.sharedInstance() as! SENTSDK
+        let sdk: SENTSDK = SENTSDK.sharedInstance()
         sdk.start({ status in
             if let uStatus = status {
                 if (uStatus.startStatus == .started) {
-                    NSLog("SDK started properly")
+                    print("SDK started properly")
                 } else if (uStatus.startStatus == .pending) {
-                    NSLog("Something prevented the SDK to start properly. Once fixed, the SDK will start automatically");
+                    print("Something prevented the SDK to start properly (see location permission settings). Once fixed, the SDK will start automatically");
                 } else {
-                    NSLog("SDK did not start");
+                    print("SDK did not start");
                 }
             }
         })
