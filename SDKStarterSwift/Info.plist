@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>5</string>
+	<string>1</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -32,11 +32,15 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Journeys requires and uses location efficiently for building an accurate daily journey</string>
+	<string>The Sentiance SDK requires and uses location efficiently for building an accurate daily journey</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Journeys requires and uses location efficiently for building an accurate daily journey</string>
+	<string>The Sentiance SDK requires and uses location efficiently for building an accurate daily journey</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The Sentiance SDK requires and uses location efficiently for building an accurate daily journey</string>
+	<key>NSLocationUsageDescription</key>
+	<string>The Sentiance SDK requires and uses location efficiently for building an accurate daily journey</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Journeys requires and uses motion activity efficiently for building an accurate daily journey</string>
+	<string>The Sentiance SDK requires and uses motion activity efficiently for building an accurate daily journey</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

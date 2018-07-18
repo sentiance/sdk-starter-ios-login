@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  SDKStarterSwift
 //
-//  Created by Muhammad Iqbal on 30/05/2016.
-//  Copyright © 2016 Sentiance Corporation. All rights reserved.
+//  Created by Gustavo Nascimento on 11/06/2018.
+//  Copyright © 2018 Sentiance Corporation. All rights reserved.
 //
 
 import UIKit
@@ -32,10 +32,12 @@ class ViewController: UIViewController {
         refreshUserID()
     }
 
-    func refreshUserID() {
-        if let sdk = SENTSDK.sharedInstance() as? SENTSDK, sdk.isInitialised() == true {
-            if let userID = sdk.getUserId() {
-                self.userIDLabel.text = userID
+    @objc func refreshUserID() {
+        DispatchQueue.main.async {
+            if let sdk = SENTSDK.sharedInstance(), sdk.isInitialised() == true {
+                if let userID = sdk.getUserId() {
+                    self.userIDLabel.text = userID
+                }
             }
         }
     }
